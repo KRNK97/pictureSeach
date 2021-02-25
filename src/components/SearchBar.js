@@ -2,8 +2,17 @@ import React from "react";
 
 class SearchBar extends React.Component {
   state = { term: "" };
+
+  // update state when input changes
   onChangeHandler = (e) => {
     this.setState({ term: e.target.value });
+  };
+
+  // handle form submission
+  submitHandler = (e) => {
+    e.preventDefault();
+    // console.log(this.state.term);
+    this.props.onSearchSubmit(this.state.term);
   };
 
   render() {
@@ -12,6 +21,7 @@ class SearchBar extends React.Component {
         <form
           action=""
           className="shadow-sm p-4 border border-secondary rounded"
+          onSubmit={this.submitHandler}
         >
           <label htmlFor="search" className="h5">
             Search Image
