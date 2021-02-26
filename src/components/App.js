@@ -13,6 +13,7 @@ class App extends React.Component {
       .get(`https://api.unsplash.com/search/photos`, {
         params: {
           query: term,
+          per_page: 30,
         },
         headers: {
           Authorization:
@@ -38,11 +39,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container mt-4">
-        <SearchBar onSearchSubmit={this.onSearchSubmit} />
-        <span className="my-2 text-center text-muted">
-          {this.state.message}
-        </span>
+      <div className="container mt-2">
+        <div className="d-flex flex-column align-items-center">
+          <SearchBar onSearchSubmit={this.onSearchSubmit} />
+          <span className="my-4 text-center text-muted h5">
+            {this.state.message}
+          </span>
+        </div>
+
         <ImageList images={this.state.searchResults} />
       </div>
     );
